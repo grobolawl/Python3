@@ -1,0 +1,18 @@
+dictwords = dict()
+
+with open("test.txt") as fh:
+    for line in fh:
+        words = line.split()
+        for word in words:
+            if word == "From":
+                if words[1] not in dictwords:
+                    dictwords[words[1]] = 1 #Finner ordet, gör så att den adderar mailen
+                else:
+                    dictwords[words[1]] += 1
+    
+    #Skapar en list med tuples med största först
+    lst = list()
+    for key,val in list(dictwords.items()):
+        lst.append((val,key))
+        lst.sort(reverse=True)
+print(lst)
