@@ -1,0 +1,33 @@
+d = dict()    
+lst = list()
+count = 0
+with open("mbox-short.txt") as fh:
+    for line in fh:
+        line = line.rstrip()
+        line = line.translate(line.maketrans("", "", string.punctuation))
+        line = line.lower()
+        words = line.split()
+        
+        if len(words) < 5 and words != "From":
+            continue
+        
+        for letter in words:
+            for let in letter:
+                x = let.isdigit()
+                if x == True:
+                    continue
+                elif let not in d:
+                    d[let] = 1
+                    count += 1
+                else:
+                    d[let] += 1
+                    count += 1
+            
+       
+    for key, val in list(d.items()):
+            lst.append((val / count , key))
+            
+    lst.sort(reverse = True)
+    
+    for key, val in lst:
+        print(val, key)
