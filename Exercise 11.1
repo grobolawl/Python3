@@ -1,0 +1,13 @@
+count = 0
+with open("mbox-short.txt") as fh:
+
+    x = input("What re are you searching for: ")
+    reg = str(x) #regular expressions är strings, kom ihåg det.
+    
+    for line in fh:
+        line.rstrip()
+        
+        if re.findall(reg, line) != []:
+            count += 1
+    
+    print(count)
