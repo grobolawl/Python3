@@ -1,0 +1,21 @@
+#Exercise 2 Find and compare numbers using RE
+file = input("What file do you search within: ")
+
+lst = list()
+
+try:
+    fh = open(file)
+except:
+    print("Wrong input")
+
+for line in fh:
+    line.strip()
+    num = re.findall('^New Revision:(\s[0-9.]+)',line)
+    if len(num) > 0:
+        for number in num:
+            number = float(number)
+        lst.append(number)
+        
+avg = sum(lst)/len(lst)
+    
+print(avg)
